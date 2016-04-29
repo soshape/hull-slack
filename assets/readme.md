@@ -1,4 +1,4 @@
-# Hull + Slack
+# Hull x Slack
 
 This Ship notifies you on Slack when a Customer signs up, updates, enters or leaves a segment, and sends Daily, Weekly and Montly Organization reports to your Slack Channel
 
