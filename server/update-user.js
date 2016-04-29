@@ -49,7 +49,7 @@ export default function (notification = {}, context = {}) {
     if (s) {
       attachments.push({
         title: 'Segments',
-        color: 'pink',
+        color: '#ff9df2',
         text: s
       });
     }
