@@ -9,13 +9,6 @@ function log(err) {
 }
 
 const blacklist = [
-  'has_done',
-  'invited_by_id',
-  'sign_up_url',
-  'has_password',
-  'is_approved',
-  'has_confirmed_email',
-  'is_admin'
 ];
 
 function flatten(arr, n) {
