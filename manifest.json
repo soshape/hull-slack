@@ -21,6 +21,13 @@
       "format": "text"
     },
     {
+      "name": "segment",
+      "title": "Hull segment",
+      "description": "name of the segment you want to be updated about",
+      "type": "string",
+      "format": "text"
+    },
+    {
       "name": "username",
       "title": "Bot Name",
       "description" : "Change Bot name. Default is the one specified in Slack settings",
