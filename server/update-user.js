@@ -29,7 +29,10 @@ export default function (notification = {}, context = {}) {
   const { user, segments } = notification.message;
 
   if (!user || !user.id || !ship || !ship.settings) { return false; }
-  if ( _.indexOf(segments, 'LovaLova') == -1) {return false;}
+  log(segments.toString());
+  log("attribut");
+  log(ship.settings.segment);
+  if ( _.indexOf(segments, ship.settings.segment) == -1) {return false;}
 
   cache(ship.id, '/search/user_reports/bootstrap', hull).then((properties) => {
     const url = userUrl(user, hull.configuration().orgUrl);
