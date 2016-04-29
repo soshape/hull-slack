@@ -29,10 +29,12 @@ export default function (notification = {}, context = {}) {
   const { user, segments } = notification.message;
 
   if (!user || !user.id || !ship || !ship.settings) { return false; }
-  log(segments.toString());
+  const s = flatten(segments, 'name');
+  log(s);
   log("attribut");
   log(ship.settings.segment);
-  if ( _.indexOf(segments, ship.settings.segment) == -1) {return false;}
+  if ( s.indexOf(ship.settings.segment) == -1) {return false;}
+  log("OK");
 
   cache(ship.id, '/search/user_reports/bootstrap', hull).then((properties) => {
     const url = userUrl(user, hull.configuration().orgUrl);
@@ -44,7 +46,6 @@ export default function (notification = {}, context = {}) {
       user
     });
 
-    const s = flatten(segments, 'name');
     if (s) {
       attachments.push({
         title: 'Segments',
