@@ -9,7 +9,7 @@
       "name": "hook_url",
       "title": "Webhook URL",
       "description": "Slack Webhook Url, (see https://api.slack.com/incoming-webhooks and create one here )",
-      "default": "https://hooks.slack.com/services/xxxx/xxx/xxx",
+      "default": "https://hooks.slack.com/etc",
       "type": "string",
       "format": "text"
     },
