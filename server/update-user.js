@@ -28,7 +28,7 @@ export default function (notification = {}, context = {}) {
   const { hull, ship } = context;
   const { user, segments } = notification.message;
 
-  if (!user || !user.id || !ship || !ship.settings) { return false; }
+  if (!user || !user.id || !ship || !ship.settings) { log('Nothing Muffin');return false; }
   const s = flatten(segments, 'name');
   log(s);
   log("attribut");
