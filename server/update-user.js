@@ -29,12 +29,6 @@ export default function (notification = {}, context = {}) {
   const { user, segments } = notification.message;
 
   if (!user || !user.id || !ship || !ship.settings) { log('Nothing Muffin');return false; }
-  const s = flatten(segments, 'name');
-  log(s);
-  log("attribut");
-  log(ship.settings.segment);
-  if ( s.indexOf(ship.settings.segment) == -1) {return false;}
-  log("OK");
 
   cache(ship.id, '/search/user_reports/bootstrap', hull).then((properties) => {
     const url = userUrl(user, hull.configuration().orgUrl);
@@ -46,6 +40,7 @@ export default function (notification = {}, context = {}) {
       user
     });
 
+    const s = flatten(segments, 'name');
     if (s) {
       attachments.push({
         title: 'Segments',
