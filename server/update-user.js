@@ -54,7 +54,8 @@ export default function (notification = {}, context = {}) {
       });
     }
     new Slack(ship.settings.hook_url).send({
-      ..._.omit(ship.settings, 'hook_url'),
+      ..._.omit(ship.settings, ['hook_url', 'channel']),
+      channel: s,
       text: `<${url}|${name}> Updated`,
       unfurl_links: true,
       attachments
