@@ -41,8 +41,8 @@ export default function (notification = {}, context = {}) {
     });
 
     const s = flatten(segments, 'name');
-    console.log(segments);
-    console.log(s);
+    log(segments);
+    log(s);
     if (s) {
       attachments.push({
         title: 'Segments',
@@ -50,12 +50,15 @@ export default function (notification = {}, context = {}) {
         text: s
       });
     }
-    new Slack(ship.settings.hook_url).send({
-      ..._.omit(ship.settings, ['hook_url', 'channel']),
-      channel: s,
-      text: `<${url}|${name}> Updated`,
-      unfurl_links: true,
-      attachments
+
+    _.each(segments, function (segment){
+      new Slack(ship.settings.hook_url).send({
+        ..._.omit(ship.settings, ['hook_url', 'channel']),
+        channel: '#' . _.snakeCase(segment),
+        text: `<${url}|${name}> Updated`,
+        unfurl_links: true,
+        attachments
+      });
     });
   }, log).catch(log);
 }
