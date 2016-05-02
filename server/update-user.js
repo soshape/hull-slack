@@ -41,6 +41,8 @@ export default function (notification = {}, context = {}) {
     });
 
     const s = flatten(segments, 'name');
+    console.log(segments);
+    console.log(s);
     if (s) {
       attachments.push({
         title: 'Segments',
