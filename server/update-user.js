@@ -28,7 +28,7 @@ export default function (notification = {}, context = {}) {
   const { hull, ship } = context;
   const { user, segments } = notification.message;
 
-  if (!user || !user.id || !ship || !ship.settings) { log('Nothing Muffin');return false; }
+  if (!user || !user.id || !ship || !ship.settings) { return false; }
 
   cache(ship.id, '/search/user_reports/bootstrap', hull).then((properties) => {
     const url = userUrl(user, hull.configuration().orgUrl);
@@ -41,8 +41,6 @@ export default function (notification = {}, context = {}) {
     });
 
     const s = flatten(segments, 'name');
-    log(segments);
-    log(s);
     if (s) {
       attachments.push({
         title: 'Segments',
@@ -50,15 +48,12 @@ export default function (notification = {}, context = {}) {
         text: s
       });
     }
-
-    _.each(segments, function (segment){
-      new Slack(ship.settings.hook_url).send({
-        ..._.omit(ship.settings, ['hook_url', 'channel']),
-        channel: '#' . _.snakeCase(segment),
-        text: `<${url}|${name}> Updated`,
-        unfurl_links: true,
-        attachments
-      });
+    new Slack(ship.settings.hook_url).send({
+      ..._.omit(ship.settings, ['hook_url', 'channel']),
+      channel: "#newchannel",
+      text: `<${url}|${name}> Updated`,
+      unfurl_links: true,
+      attachments
     });
   }, log).catch(log);
 }
