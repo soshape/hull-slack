@@ -48,12 +48,20 @@ export default function (notification = {}, context = {}) {
         text: s
       });
     }
-    new Slack(ship.settings.hook_url).send({
-      ..._.omit(ship.settings, ['hook_url', 'channel']),
-      channel: "#newchannel",
-      text: `<${url}|${name}> Updated`,
-      unfurl_links: true,
-      attachments
-    });
+
+    if (segments){
+      _.each(segments, function(value){
+        log('Channel: #' + _.kebabCase(value.name));
+        new Slack(ship.settings.hook_url).send({
+          ..._.omit(ship.settings, ['hook_url', 'channel']),
+          channel: '#' + _.kebabCase(value["name"]),
+          text: `<${url}|${name}> Updated`,
+          unfurl_links: true,
+          icon_emoji: ":panda_face:",
+          attachments
+        });
+      });
+    }
+
   }, log).catch(log);
 }
